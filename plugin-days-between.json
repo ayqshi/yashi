@@ -1,0 +1,36 @@
+{
+  "id": "days-between",
+  "name": "Days between dates",
+  "version": "1.0.0",
+  "topic": "calendar",
+  "description": "Days between two dates, or until/since a date.",
+  "keywords": [
+    "days between",
+    "days until",
+    "days since",
+    "how many days",
+    "weeks until"
+  ],
+  "regex": "\\b(days|weeks) (between|until|till|since|from|to)\\b|\\bhow (many|long) (days|weeks)\\b",
+  "solve": "function solve(q,ctx){const t=q.replace(/(\\d)(st|nd|rd|th)\\b/g,'$1');const M='jan feb mar apr may jun jul aug sep oct nov dec'.split(' ');const now=new Date(ctx&&ctx.now||Date.now());const re=/\\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\\.?\\s+(\\d{1,2})(?:,?\\s*(\\d{4}))?|\\b(\\d{1,2})\\s+(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*(?:,?\\s*(\\d{4}))?|\\b(\\d{4})-(\\d{2})-(\\d{2})\\b|\\b(today|tomorrow|yesterday)\\b/gi;const ds=[];let m;while(m=re.exec(t)){let d;if(m[1])d=new Date(m[3]?+m[3]:now.getFullYear(),M.indexOf(m[1].toLowerCase().slice(0,3)),+m[2]);else if(m[5])d=new Date(m[6]?+m[6]:now.getFullYear(),M.indexOf(m[5].toLowerCase().slice(0,3)),+m[4]);else if(m[7])d=new Date(+m[7],+m[8]-1,+m[9]);else{d=new Date(now.getFullYear(),now.getMonth(),now.getDate()+({today:0,tomorrow:1,yesterday:-1})[m[10].toLowerCase()])}ds.push({d,yearGiven:!!(m[3]||m[6]||m[7]||m[10])})}const today=new Date(now.getFullYear(),now.getMonth(),now.getDate());if(!ds.length)return{answer:null,reason:'No dates found.'};let a,b;if(ds.length>=2){a=ds[0].d;b=ds[1].d}else{a=today;b=ds[0].d;if(!ds[0].yearGiven&&/\\b(until|till|to go|left)\\b/i.test(t)&&b<today)b=new Date(b.getFullYear()+1,b.getMonth(),b.getDate())}const days=Math.round((Date.UTC(b.getFullYear(),b.getMonth(),b.getDate())-Date.UTC(a.getFullYear(),a.getMonth(),a.getDate()))/864e5);const fmt=d=>d.toDateString();const w=Math.floor(Math.abs(days)/7),r=Math.abs(days)%7;return{answer:`${Math.abs(days)} days${w?` (${w} week${w>1?'s':''}${r?` and ${r} day${r>1?'s':''}`:''})`:''}`,steps:[`From ${fmt(a)} to ${fmt(b)}`,`${days<0?'That date has passed: ':''}${Math.abs(days)} days`]}}",
+  "tests": [
+    {
+      "q": "how many days between March 3 2024 and July 4 2025",
+      "expect": "488 days"
+    },
+    {
+      "q": "days between 2026-01-01 and 2026-12-25",
+      "expect": "358 days"
+    },
+    {
+      "q": "how many days from 1 Jan 2020 to 1 Jan 2021",
+      "expect": "366 days"
+    },
+    {
+      "q": "days between Feb 1st 2023 and March 1st 2023",
+      "expect": "28 days"
+    }
+  ],
+  "license": "MIT",
+  "author": "ayqshi"
+}

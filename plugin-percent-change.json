@@ -1,0 +1,37 @@
+{
+  "id": "percent-change",
+  "name": "Percent change",
+  "version": "1.0.0",
+  "topic": "maths",
+  "description": "Percentage increase or decrease between two values.",
+  "keywords": [
+    "percent change",
+    "percentage increase",
+    "percentage decrease",
+    "percent increase",
+    "percent decrease",
+    "went from"
+  ],
+  "regex": "\\b(percent(age)? (change|increase|decrease|difference)|% (change|increase|decrease)|went from|grew from|dropped from|fell from|rose from)\\b",
+  "solve": "function solve(q){const t=q.toLowerCase().replace(/,(?=\\d{3})/g,'');let m=t.match(/from\\s*\\$?(-?\\d+(?:\\.\\d+)?)\\s*(?:\\w+\\s+)?to\\s*\\$?(-?\\d+(?:\\.\\d+)?)/);if(!m){const n=t.match(/-?\\d+(?:\\.\\d+)?/g);if(!n||n.length<2)return{answer:null,reason:'Need two values.'};m=[0,n[0],n[1]]}const a=+m[1],b=+m[2];if(a===0)return{answer:null,reason:'The starting value is zero, so a percent change is undefined.'};const p=(b-a)/Math.abs(a)*100,r=+p.toFixed(2);return{answer:`${r>0?'+':''}${r}% (${r>=0?'increase':'decrease'})`,steps:[`Change = ${b} − ${a} = ${+(b-a).toFixed(6)}`,`Percent change = change ÷ |${a}| × 100 = ${r}%`]}}",
+  "tests": [
+    {
+      "q": "percent change from 80 to 100",
+      "expect": "+25%"
+    },
+    {
+      "q": "what is the percentage increase from 40 to 50",
+      "expect": "+25%"
+    },
+    {
+      "q": "sales went from 120 to 90, what percent decrease is that",
+      "expect": "-25%"
+    },
+    {
+      "q": "price rose from $3.20 to $4.00 percent change",
+      "expect": "+25%"
+    }
+  ],
+  "license": "MIT",
+  "author": "ayqshi"
+}

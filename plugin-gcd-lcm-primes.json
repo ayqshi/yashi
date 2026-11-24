@@ -1,0 +1,39 @@
+{
+  "id": "gcd-lcm-primes",
+  "name": "GCD, LCM and prime factors",
+  "version": "1.0.0",
+  "topic": "maths",
+  "description": "Greatest common divisor, least common multiple, prime factorisation and primality.",
+  "keywords": [
+    "gcd",
+    "gcf",
+    "hcf",
+    "lcm",
+    "prime factor",
+    "is prime",
+    "greatest common",
+    "least common multiple"
+  ],
+  "regex": "\\b(gcd|gcf|hcf|lcm|greatest common (divisor|factor)|highest common factor|least common multiple|prime factori[sz]ation|prime factors|is \\d+ (a )?prime)\\b",
+  "solve": "function solve(q){const t=q.toLowerCase(),n=(t.match(/\\d+/g)||[]).map(Number);const g=(a,b)=>b?g(b,a%b):a;if(/lcm|least common/.test(t)&&n.length>=2){const l=n.reduce((a,b)=>a/g(a,b)*b);return{answer:`LCM = ${l}`,steps:[`LCM(a,b) = a·b ÷ GCD(a,b), applied across ${n.join(', ')}`]}}if(/gcd|gcf|hcf|greatest|highest/.test(t)&&n.length>=2){const steps=[];const r=n.reduce((a,b)=>{let x=a,y=b;while(y){steps.push(`${x} mod ${y} = ${x%y}`);[x,y]=[y,x%y]}return x});return{answer:`GCD = ${r}`,steps}}if(n.length){let v=n[0];const f=[];for(let d=2;d*d<=v;d++)while(v%d===0){f.push(d);v/=d}if(v>1)f.push(v);if(/is \\d+ (a )?prime/.test(t))return{answer:f.length===1&&n[0]>1?`Yes, ${n[0]} is prime`:`No, ${n[0]} = ${f.join(' × ')}`,steps:[`Trial division up to √${n[0]}`]};return{answer:`${n[0]} = ${f.join(' × ')}`,steps:['Divide by the smallest prime repeatedly']}}return{answer:null,reason:'No numbers found.'}}",
+  "tests": [
+    {
+      "q": "gcd of 48 and 180",
+      "expect": "12"
+    },
+    {
+      "q": "lcm of 4, 6 and 10",
+      "expect": "60"
+    },
+    {
+      "q": "prime factorization of 360",
+      "expect": "2 × 2 × 2 × 3 × 3 × 5"
+    },
+    {
+      "q": "is 97 a prime",
+      "expect": "yes"
+    }
+  ],
+  "license": "MIT",
+  "author": "ayqshi"
+}

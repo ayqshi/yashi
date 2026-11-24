@@ -1,0 +1,34 @@
+{
+  "id": "roman-numerals",
+  "name": "Roman numerals",
+  "version": "1.0.0",
+  "topic": "maths",
+  "description": "Convert between Roman numerals and numbers.",
+  "keywords": [
+    "roman numeral",
+    "in roman",
+    "roman numerals"
+  ],
+  "regex": "\\broman\\b|\\b(?=[mdclxvi]{2,}\\b)(m{0,4}(cm|cd|d?c{0,3})(xc|xl|l?x{0,3})(ix|iv|v?i{0,3}))\\b.*\\b(number|mean|value|decimal|arabic)\\b",
+  "solve": "function solve(q){const R=[[1000,'M'],[900,'CM'],[500,'D'],[400,'CD'],[100,'C'],[90,'XC'],[50,'L'],[40,'XL'],[10,'X'],[9,'IX'],[5,'V'],[4,'IV'],[1,'I']];const n=q.match(/\\b(\\d{1,4})\\b/);const r=q.match(/\\b([MDCLXVI]{1,15})\\b/)||q.match(/\\b([mdclxvi]{2,15})\\b/);if(n&&+n[1]>0&&+n[1]<4000&&!/\\bto (a )?number\\b/i.test(q)){let v=+n[1],o='';const steps=[];for(const[k,s]of R)while(v>=k){o+=s;v-=k;steps.push(`${s} = ${k}`)}return{answer:`${n[1]} = ${o}`,steps}}if(r){const s=r[1].toUpperCase(),V={I:1,V:5,X:10,L:50,C:100,D:500,M:1000};let t=0;for(let i=0;i<s.length;i++){const a=V[s[i]],b=V[s[i+1]]||0;t+=a<b?-a:a}return{answer:`${s} = ${t}`,steps:[`Add each value, subtracting any that come before a larger one: ${t}`]}}return{answer:null,reason:'No number or numeral found.'}}",
+  "tests": [
+    {
+      "q": "what is 1994 in roman numerals",
+      "expect": "MCMXCIV"
+    },
+    {
+      "q": "convert MMXXVI to a number",
+      "expect": "2026"
+    },
+    {
+      "q": "roman numeral for 49",
+      "expect": "XLIX"
+    },
+    {
+      "q": "what does XIV mean in roman numerals",
+      "expect": "14"
+    }
+  ],
+  "license": "MIT",
+  "author": "ayqshi"
+}

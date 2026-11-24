@@ -1,0 +1,37 @@
+{
+  "id": "loan-payment",
+  "name": "Loan and mortgage payments",
+  "version": "1.0.0",
+  "topic": "finance",
+  "description": "Monthly payment, total paid and total interest for an amortised loan.",
+  "keywords": [
+    "mortgage",
+    "loan",
+    "monthly payment",
+    "amortization",
+    "car loan",
+    "repayment"
+  ],
+  "regex": "\\b(mortgage|loan|monthly payment|repayments?)\\b",
+  "solve": "function solve(q){const t=q.toLowerCase().replace(/,(?=\\d{3})/g,'');const m=t.match(/(?:\\$|£|€)\\s*(\\d+(?:\\.\\d+)?)\\s*(k|m|thousand|million)?\\b|(\\d+(?:\\.\\d+)?)\\s*(k|thousand|million)?\\s*(?:dollar|pound|euro)?s?\\s*(?:mortgage|loan)/);const mult=s=>!s?1:/^(k|thousand)$/.test(s)?1e3:1e6;const P=m?(+(m[1]||m[3]))*mult(m[2]||m[4]):null;const rate=t.match(/(\\d+(?:\\.\\d+)?)\\s*(%|percent)/);const yrs=t.match(/(\\d+)\\s*(years?|yrs?|-year)/),mos=t.match(/(\\d+)\\s*months?\\b/);if(!P||!rate||!(yrs||mos))return{answer:null,reason:'Need the loan amount, interest rate and term.'};const n=yrs?+yrs[1]*12:+mos[1],r=+rate[1]/100/12;const pay=r===0?P/n:P*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);const f=v=>v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});return{answer:`${f(pay)} a month (total ${f(pay*n)}, interest ${f(pay*n-P)})`,steps:[`Loan P = ${f(P)}, monthly rate r = ${rate[1]}% ÷ 12 = ${+r.toFixed(6)}, payments n = ${n}`,'Payment = P·r·(1+r)^n ÷ ((1+r)^n − 1)',`Payment = ${f(pay)}`,`Total paid = ${f(pay*n)}; interest = ${f(pay*n-P)}`]}}",
+  "tests": [
+    {
+      "q": "monthly payment on a $250,000 mortgage at 6.5% for 30 years",
+      "expect": "1,580.17"
+    },
+    {
+      "q": "What would I pay each month for a $20k car loan at 7 percent over 60 months?",
+      "expect": "396.02"
+    },
+    {
+      "q": "loan of $10,000 at 5% for 5 years monthly repayments",
+      "expect": "188.71"
+    },
+    {
+      "q": "$300k mortgage 15-year at 5.75%",
+      "expect": "2,491.23"
+    }
+  ],
+  "license": "MIT",
+  "author": "ayqshi"
+}

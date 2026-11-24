@@ -1,0 +1,36 @@
+{
+  "id": "tip-split",
+  "name": "Tip and bill splitting",
+  "version": "1.0.0",
+  "topic": "finance",
+  "description": "Tip amount, total, and each person’s share.",
+  "keywords": [
+    "tip",
+    "split the bill",
+    "split",
+    "per person",
+    "gratuity"
+  ],
+  "regex": "\\b(tip|gratuity|split (the )?(bill|check|cheque)|per person|each pay|between \\d+ (people|friends|of us)|split \\$?\\d+(\\.\\d+)? \\d+ ways)\\b",
+  "solve": "function solve(q){const t=q.toLowerCase().replace(/,(?=\\d{3})/g,'');const pct=t.match(/(\\d+(?:\\.\\d+)?)\\s*(%|percent)/);const ppl=t.match(/(\\d+)\\s*(people|persons|friends|ways|of us|guests)/)||t.match(/split\\s+(\\d+)\\s*ways/)||t.match(/between\\s+(\\d+)/);const amt=t.match(/\\$\\s*(\\d+(?:\\.\\d+)?)/)||t.match(/(\\d+(?:\\.\\d+)?)\\s*(dollars|bill|check|total)/)||t.match(/(?:bill|check|cheque|total)\\s*(?:of|is|was)?\\s*\\$?\\s*(\\d+(?:\\.\\d+)?)/);if(!amt)return{answer:null,reason:'Need the bill amount.'};const B=+amt[1],p=pct?+pct[1]:(/tip/.test(t)?18:0),n=ppl?+ppl[1]:1;const tip=B*p/100,tot=B+tip,each=tot/n;const f=v=>v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});return{answer:`tip ${f(tip)}, total ${f(tot)}${n>1?`, ${f(each)} each`:''}`,steps:[`Tip = ${B} × ${p}% = ${f(tip)}`,`Total = ${f(tot)}`,n>1?`Each of ${n} pays ${f(tot)} ÷ ${n} = ${f(each)}`:'One payer']}}",
+  "tests": [
+    {
+      "q": "20% tip on $85",
+      "expect": "tip 17.00, total 102.00"
+    },
+    {
+      "q": "split a $240 bill between 4 people with 15% tip",
+      "expect": "69.00 each"
+    },
+    {
+      "q": "what is the tip on a bill of 64.50 at 18 percent",
+      "expect": "tip 11.61"
+    },
+    {
+      "q": "split $90 3 ways",
+      "expect": "30.00 each"
+    }
+  ],
+  "license": "MIT",
+  "author": "ayqshi"
+}

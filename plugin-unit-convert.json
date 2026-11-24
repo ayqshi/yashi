@@ -1,0 +1,42 @@
+{
+  "id": "unit-convert",
+  "name": "Unit conversion",
+  "version": "1.0.0",
+  "topic": "measurement",
+  "description": "Length, mass, volume, temperature, speed, area and data units.",
+  "keywords": [
+    "convert",
+    "in feet",
+    "in km",
+    "to miles",
+    "to kg",
+    "fahrenheit",
+    "celsius"
+  ],
+  "regex": "\\b(convert|how many|in|to|into)\\b.*\\b(km|kilometers?|kilometres?|miles?|mi|meters?|metres?|m|cm|mm|feet|foot|ft|inch(es)?|in|yards?|yd|kg|kilograms?|grams?|g|lbs?|pounds?|oz|ounces?|stones?|liters?|litres?|l|ml|gallons?|gal|cups?|°?[cf]|celsius|fahrenheit|kelvin|mph|km/h|kph|knots?|acres?|hectares?|sq ?ft|square (feet|meters?|metres?)|bytes?|kb|mb|gb|tb)\\b",
+  "solve": "function solve(q){const U={m:['len',1],meter:['len',1],metre:['len',1],km:['len',1000],kilometer:['len',1000],kilometre:['len',1000],cm:['len',.01],mm:['len',.001],mi:['len',1609.344],mile:['len',1609.344],ft:['len',.3048],foot:['len',.3048],feet:['len',.3048],in:['len',.0254],inch:['len',.0254],yd:['len',.9144],yard:['len',.9144],kg:['mass',1],kilogram:['mass',1],g:['mass',.001],gram:['mass',.001],lb:['mass',.45359237],lbs:['mass',.45359237],pound:['mass',.45359237],oz:['mass',.028349523125],ounce:['mass',.028349523125],stone:['mass',6.35029318],l:['vol',1],liter:['vol',1],litre:['vol',1],ml:['vol',.001],gal:['vol',3.785411784],gallon:['vol',3.785411784],cup:['vol',.2365882365],mph:['spd',1.609344],kph:['spd',1],'km/h':['spd',1],knot:['spd',1.852],acre:['area',4046.8564224],hectare:['area',10000],'sq ft':['area',.09290304],'square foot':['area',.09290304],'square feet':['area',.09290304],'square meter':['area',1],'square metre':['area',1],b:['data',1],byte:['data',1],kb:['data',1e3],mb:['data',1e6],gb:['data',1e9],tb:['data',1e12],c:['temp','C'],celsius:['temp','C'],f:['temp','F'],fahrenheit:['temp','F'],k:['temp','K'],kelvin:['temp','K']};const t=q.toLowerCase().replace(/°/g,'').replace(/,(?=\\d{3})/g,'');const units=Object.keys(U).sort((a,b)=>b.length-a.length).map(u=>u.replace(/[/]/g,'\\\\/')).join('|');const re=new RegExp('(-?\\\\d+(?:\\\\.\\\\d+)?)\\\\s*('+units+')(?:e?s)?\\\\b.*?\\\\b(?:to|in|into|as)\\\\s+(?:a |an )?('+units+')(?:e?s)?\\\\b');let m=t.match(re);let v,a,b;if(m){v=+m[1];a=m[2];b=m[3]}else{const m2=t.match(new RegExp('how many\\\\s+('+units+')(?:e?s)?\\\\s+(?:are |is )?in\\\\s+(?:a |an |one )?(-?\\\\d+(?:\\\\.\\\\d+)?)?\\\\s*('+units+')(?:e?s)?\\\\b'));if(!m2)return{answer:null,reason:'Say it like “5 km to miles”.'};b=m2[1];v=m2[2]?+m2[2]:1;a=m2[3]}const A=U[a],B=U[b];if(!A||!B||A[0]!==B[0])return{answer:null,reason:'Those units measure different things.'};let r;if(A[0]==='temp'){const c=A[1]==='C'?v:A[1]==='F'?(v-32)*5/9:v-273.15;r=B[1]==='C'?c:B[1]==='F'?c*9/5+32:c+273.15}else r=v*A[1]/B[1];const out=+r.toPrecision(6);return{answer:`${v} ${a} = ${out.toLocaleString('en-US',{maximumFractionDigits:6})} ${b}`,steps:[A[0]==='temp'?'Convert through Celsius':`Factor: 1 ${a} = ${+(A[1]/B[1]).toPrecision(8)} ${b}`,`${v} × factor = ${out}`]}}",
+  "tests": [
+    {
+      "q": "convert 5 km to miles",
+      "expect": "3.10686 mi"
+    },
+    {
+      "q": "100 fahrenheit in celsius",
+      "expect": "37.7778"
+    },
+    {
+      "q": "how many cm in 6 feet",
+      "expect": "182.88"
+    },
+    {
+      "q": "2.5 kg to lbs",
+      "expect": "5.51156"
+    },
+    {
+      "q": "60 mph to km/h",
+      "expect": "96.5606"
+    }
+  ],
+  "license": "MIT",
+  "author": "ayqshi"
+}

@@ -1,0 +1,32 @@
+{
+  "id": "simple-interest",
+  "name": "Simple interest",
+  "version": "1.0.0",
+  "topic": "finance",
+  "description": "Simple (non-compounding) interest and total.",
+  "keywords": [
+    "simple interest"
+  ],
+  "regex": "\\bsimple interest\\b",
+  "solve": "function solve(q){const t=q.toLowerCase().replace(/,(?=\\d{3})/g,'');const P=t.match(/\\$\\s*(\\d+(?:\\.\\d+)?)/)||t.match(/(?:principal|on|of)\\s*(\\d+(?:\\.\\d+)?)/);const r=t.match(/(\\d+(?:\\.\\d+)?)\\s*(%|percent)/);const y=t.match(/(\\d+(?:\\.\\d+)?)\\s*years?/),mo=t.match(/(\\d+)\\s*months?/);if(!P||!r||!(y||mo))return{answer:null,reason:'Need principal, rate and time.'};const p=+P[1],R=+r[1]/100,T=y?+y[1]:+mo[1]/12;const I=p*R*T,f=v=>v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});return{answer:`interest ${f(I)}, total ${f(p+I)}`,steps:[`I = P·r·t = ${p} × ${R} × ${+T.toFixed(4)}`,`= ${f(I)}`]}}",
+  "tests": [
+    {
+      "q": "simple interest on $5000 at 6% for 3 years",
+      "expect": "interest 900.00"
+    },
+    {
+      "q": "what is the simple interest of 1200 at 4.5 percent for 18 months",
+      "expect": "interest 81.00"
+    },
+    {
+      "q": "simple interest principal 800, 5%, 2 years",
+      "expect": "total 880.00"
+    },
+    {
+      "q": "$10,000 simple interest 3% 10 years",
+      "expect": "interest 3,000.00"
+    }
+  ],
+  "license": "MIT",
+  "author": "ayqshi"
+}

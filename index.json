@@ -1,0 +1,245 @@
+[
+  {
+    "id": "compound-interest",
+    "name": "Compound interest",
+    "topic": "finance",
+    "keywords": [
+      "compound interest",
+      "compounded",
+      "invest",
+      "savings grow",
+      "future value"
+    ],
+    "regex": "^(?!.*\\bsimple interest\\b)(?=.*\\d)(?=.*\\b(compound(ed|ing)?|interest)\\b)",
+    "path": "plugin-compound-interest.json",
+    "version": "1.0.0"
+  },
+  {
+    "id": "loan-payment",
+    "name": "Loan and mortgage payments",
+    "topic": "finance",
+    "keywords": [
+      "mortgage",
+      "loan",
+      "monthly payment",
+      "amortization",
+      "car loan",
+      "repayment"
+    ],
+    "regex": "\\b(mortgage|loan|monthly payment|repayments?)\\b",
+    "path": "plugin-loan-payment.json",
+    "version": "1.0.0"
+  },
+  {
+    "id": "percent-change",
+    "name": "Percent change",
+    "topic": "maths",
+    "keywords": [
+      "percent change",
+      "percentage increase",
+      "percentage decrease",
+      "percent increase",
+      "percent decrease",
+      "went from"
+    ],
+    "regex": "\\b(percent(age)? (change|increase|decrease|difference)|% (change|increase|decrease)|went from|grew from|dropped from|fell from|rose from)\\b",
+    "path": "plugin-percent-change.json",
+    "version": "1.0.0"
+  },
+  {
+    "id": "base-convert",
+    "name": "Number bases",
+    "topic": "computing",
+    "keywords": [
+      "binary",
+      "hex",
+      "hexadecimal",
+      "octal",
+      "decimal",
+      "base 2",
+      "base 16"
+    ],
+    "regex": "\\b(binary|hex(adecimal)?|octal|0x[0-9a-f]+|0b[01]+)\\b|\\b(in|to|from|into) base ?(2|8|16|10)\\b",
+    "path": "plugin-base-convert.json",
+    "version": "1.0.0"
+  },
+  {
+    "id": "days-between",
+    "name": "Days between dates",
+    "topic": "calendar",
+    "keywords": [
+      "days between",
+      "days until",
+      "days since",
+      "how many days",
+      "weeks until"
+    ],
+    "regex": "\\b(days|weeks) (between|until|till|since|from|to)\\b|\\bhow (many|long) (days|weeks)\\b",
+    "path": "plugin-days-between.json",
+    "version": "1.0.0"
+  },
+  {
+    "id": "statistics",
+    "name": "Descriptive statistics",
+    "topic": "maths",
+    "keywords": [
+      "mean",
+      "median",
+      "mode",
+      "average",
+      "standard deviation",
+      "variance",
+      "range of"
+    ],
+    "regex": "\\b(mean|median|mode|standard deviation|std ?dev|variance|range|average)\\b[^\\d]*(-?\\d+(\\.\\d+)?[,\\s]+){2,}",
+    "path": "plugin-statistics.json",
+    "version": "1.0.0"
+  },
+  {
+    "id": "unit-convert",
+    "name": "Unit conversion",
+    "topic": "measurement",
+    "keywords": [
+      "convert",
+      "in feet",
+      "in km",
+      "to miles",
+      "to kg",
+      "fahrenheit",
+      "celsius"
+    ],
+    "regex": "\\b(convert|how many|in|to|into)\\b.*\\b(km|kilometers?|kilometres?|miles?|mi|meters?|metres?|m|cm|mm|feet|foot|ft|inch(es)?|in|yards?|yd|kg|kilograms?|grams?|g|lbs?|pounds?|oz|ounces?|stones?|liters?|litres?|l|ml|gallons?|gal|cups?|°?[cf]|celsius|fahrenheit|kelvin|mph|km/h|kph|knots?|acres?|hectares?|sq ?ft|square (feet|meters?|metres?)|bytes?|kb|mb|gb|tb)\\b",
+    "path": "plugin-unit-convert.json",
+    "version": "1.0.0"
+  },
+  {
+    "id": "roman-numerals",
+    "name": "Roman numerals",
+    "topic": "maths",
+    "keywords": [
+      "roman numeral",
+      "in roman",
+      "roman numerals"
+    ],
+    "regex": "\\broman\\b|\\b(?=[mdclxvi]{2,}\\b)(m{0,4}(cm|cd|d?c{0,3})(xc|xl|l?x{0,3})(ix|iv|v?i{0,3}))\\b.*\\b(number|mean|value|decimal|arabic)\\b",
+    "path": "plugin-roman-numerals.json",
+    "version": "1.0.0"
+  },
+  {
+    "id": "gcd-lcm-primes",
+    "name": "GCD, LCM and prime factors",
+    "topic": "maths",
+    "keywords": [
+      "gcd",
+      "gcf",
+      "hcf",
+      "lcm",
+      "prime factor",
+      "is prime",
+      "greatest common",
+      "least common multiple"
+    ],
+    "regex": "\\b(gcd|gcf|hcf|lcm|greatest common (divisor|factor)|highest common factor|least common multiple|prime factori[sz]ation|prime factors|is \\d+ (a )?prime)\\b",
+    "path": "plugin-gcd-lcm-primes.json",
+    "version": "1.0.0"
+  },
+  {
+    "id": "fractions",
+    "name": "Fraction arithmetic",
+    "topic": "maths",
+    "keywords": [
+      "fraction",
+      "simplify",
+      "numerator",
+      "denominator"
+    ],
+    "regex": "\\b\\d+\\s*/\\s*\\d+\\b.*([+\\-*×÷]|\\bplus\\b|\\bminus\\b|\\btimes\\b|\\bdivided\\b|\\bsimplif)|\\bsimplify\\s+\\d+\\s*/\\s*\\d+",
+    "path": "plugin-fractions.json",
+    "version": "1.0.0"
+  },
+  {
+    "id": "timezone",
+    "name": "Time zones",
+    "topic": "calendar",
+    "keywords": [
+      "time in",
+      "what time is it in",
+      "convert time",
+      "timezone",
+      "time zone"
+    ],
+    "regex": "\\b(what time is it in|time in|time zone|timezone)\\b|\\b\\d{1,2}(:\\d{2}\\s*(am|pm)?|\\s*(am|pm))\\s+[a-z ]+?(time )?(to|in) [a-z]",
+    "path": "plugin-timezone.json",
+    "version": "1.0.0"
+  },
+  {
+    "id": "age",
+    "name": "Age and birthdays",
+    "topic": "calendar",
+    "keywords": [
+      "how old",
+      "age",
+      "born in",
+      "birthday"
+    ],
+    "regex": "\\b(how old|my age|age of someone|born (on|in)|birthday)\\b",
+    "path": "plugin-age.json",
+    "version": "1.0.0"
+  },
+  {
+    "id": "shapes",
+    "name": "Area, perimeter and volume",
+    "topic": "geometry",
+    "keywords": [
+      "area of",
+      "perimeter",
+      "circumference",
+      "volume of",
+      "surface area"
+    ],
+    "regex": "\\b(area|perimeter|circumference|volume|surface area)\\b.*\\b(circle|square|rectangle|triangle|sphere|cylinder|cone|cube|box|trapezoid)\\b",
+    "path": "plugin-shapes.json",
+    "version": "1.0.0"
+  },
+  {
+    "id": "pythagoras",
+    "name": "Right triangles",
+    "topic": "geometry",
+    "keywords": [
+      "hypotenuse",
+      "pythagorean",
+      "pythagoras",
+      "right triangle",
+      "missing side"
+    ],
+    "regex": "\\b(hypotenuse|pythagor\\w*|right[- ]angled? triangle|right triangle)\\b",
+    "path": "plugin-pythagoras.json",
+    "version": "1.0.0"
+  },
+  {
+    "id": "tip-split",
+    "name": "Tip and bill splitting",
+    "topic": "finance",
+    "keywords": [
+      "tip",
+      "split the bill",
+      "split",
+      "per person",
+      "gratuity"
+    ],
+    "regex": "\\b(tip|gratuity|split (the )?(bill|check|cheque)|per person|each pay|between \\d+ (people|friends|of us)|split \\$?\\d+(\\.\\d+)? \\d+ ways)\\b",
+    "path": "plugin-tip-split.json",
+    "version": "1.0.0"
+  },
+  {
+    "id": "simple-interest",
+    "name": "Simple interest",
+    "topic": "finance",
+    "keywords": [
+      "simple interest"
+    ],
+    "regex": "\\bsimple interest\\b",
+    "path": "plugin-simple-interest.json",
+    "version": "1.0.0"
+  }
+]

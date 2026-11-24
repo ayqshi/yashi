@@ -1,0 +1,36 @@
+{
+  "id": "compound-interest",
+  "name": "Compound interest",
+  "version": "1.0.0",
+  "topic": "finance",
+  "description": "Future value of savings or investments with compounding.",
+  "keywords": [
+    "compound interest",
+    "compounded",
+    "invest",
+    "savings grow",
+    "future value"
+  ],
+  "regex": "^(?!.*\\bsimple interest\\b)(?=.*\\d)(?=.*\\b(compound(ed|ing)?|interest)\\b)",
+  "solve": "function solve(q){const t=q.toLowerCase().replace(/,(?=\\d{3})/g,'');const money=t.match(/(?:\\$|£|€|usd\\s*)\\s*(\\d+(?:\\.\\d+)?)\\s*(k|thousand|million|m)?\\b|(\\d+(?:\\.\\d+)?)\\s*(k|thousand|million)?\\s*(?:dollars|pounds|euros|usd)\\b/);const mult=s=>s?(/^(k|thousand)$/.test(s)?1e3:1e6):1;let P=money?(+(money[1]||money[3]))*mult(money[2]||money[4]):null;const rate=t.match(/(\\d+(?:\\.\\d+)?)\\s*(%|percent)/);const yrs=t.match(/(\\d+(?:\\.\\d+)?)\\s*(years?|yrs?)/);const mos=t.match(/(\\d+)\\s*months?\\b(?!ly)/);if(P==null){const nums=(t.match(/\\d+(?:\\.\\d+)?/g)||[]).map(Number).filter(n=>!rate||n!=+rate[1]).filter(n=>!yrs||n!=+yrs[1]);P=nums.sort((a,b)=>b-a)[0]}if(P==null||!rate||!(yrs||mos))return{answer:null,reason:'Need an amount, a rate and a time.'};const r=+rate[1]/100,Y=yrs?+yrs[1]:+mos[1]/12;const N=/continuous/.test(t)?Infinity:/daily/.test(t)?365:/weekly/.test(t)?52:/monthly/.test(t)?12:/quarterly/.test(t)?4:/semi-?annual|twice a year/.test(t)?2:1;const A=N===Infinity?P*Math.exp(r*Y):P*Math.pow(1+r/N,N*Y);const f=v=>v.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});return{answer:`${f(A)} (interest earned: ${f(A-P)})`,steps:[`Principal P = ${f(P)}, rate r = ${r*100}% = ${r}, time t = ${+Y.toFixed(4)} years`,N===Infinity?'Compounded continuously: A = P·e^(r·t)':`Compounded ${N} time${N>1?'s':''} a year: A = P·(1 + r/${N})^(${N}·t)`,`A = ${f(A)}`,`Interest = A − P = ${f(A-P)}`]}}",
+  "tests": [
+    {
+      "q": "If I invest $5000 at 4% compounded monthly for 10 years how much will I have?",
+      "expect": "7,454.16"
+    },
+    {
+      "q": "compound interest on 1000 dollars at 5 percent annually for 3 years",
+      "expect": "1,157.63"
+    },
+    {
+      "q": "$2,000 at 3% compounded quarterly for 18 months",
+      "expect": "2,091.70"
+    },
+    {
+      "q": "how much is $10k worth after 20 years at 7% compounded continuously",
+      "expect": "40,552.00"
+    }
+  ],
+  "license": "MIT",
+  "author": "ayqshi"
+}

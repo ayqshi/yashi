@@ -1,0 +1,36 @@
+{
+  "id": "timezone",
+  "name": "Time zones",
+  "version": "1.0.0",
+  "topic": "calendar",
+  "description": "Current time in a city, or convert a time between zones.",
+  "keywords": [
+    "time in",
+    "what time is it in",
+    "convert time",
+    "timezone",
+    "time zone"
+  ],
+  "regex": "\\b(what time is it in|time in|time zone|timezone)\\b|\\b\\d{1,2}(:\\d{2}\\s*(am|pm)?|\\s*(am|pm))\\s+[a-z ]+?(time )?(to|in) [a-z]",
+  "solve": "function solve(q,ctx){const Z={london:'Europe/London',paris:'Europe/Paris',berlin:'Europe/Berlin',madrid:'Europe/Madrid',rome:'Europe/Rome',lisbon:'Europe/Lisbon',moscow:'Europe/Moscow',dubai:'Asia/Dubai',india:'Asia/Kolkata',delhi:'Asia/Kolkata',mumbai:'Asia/Kolkata',singapore:'Asia/Singapore','hong kong':'Asia/Hong_Kong',beijing:'Asia/Shanghai',shanghai:'Asia/Shanghai',tokyo:'Asia/Tokyo',seoul:'Asia/Seoul',sydney:'Australia/Sydney',melbourne:'Australia/Melbourne',auckland:'Pacific/Auckland','new york':'America/New_York',nyc:'America/New_York',boston:'America/New_York',miami:'America/New_York',toronto:'America/Toronto',chicago:'America/Chicago',dallas:'America/Chicago',denver:'America/Denver',phoenix:'America/Phoenix','los angeles':'America/Los_Angeles',la:'America/Los_Angeles','san francisco':'America/Los_Angeles',seattle:'America/Los_Angeles','mexico city':'America/Mexico_City','sao paulo':'America/Sao_Paulo','são paulo':'America/Sao_Paulo','buenos aires':'America/Argentina/Buenos_Aires',cairo:'Africa/Cairo',lagos:'Africa/Lagos',nairobi:'Africa/Nairobi',johannesburg:'Africa/Johannesburg',utc:'UTC',gmt:'UTC',est:'America/New_York',edt:'America/New_York',pst:'America/Los_Angeles',pdt:'America/Los_Angeles',cst:'America/Chicago',cet:'Europe/Paris',ist:'Asia/Kolkata',jst:'Asia/Tokyo'};const t=q.toLowerCase();const keys=Object.keys(Z).sort((a,b)=>b.length-a.length);const found=[];let s=t;for(const k of keys){const i=s.search(new RegExp('\\\\b'+k+'\\\\b'));if(i>=0){found.push({k,i});s=s.slice(0,i)+' '.repeat(k.length)+s.slice(i+k.length)}}found.sort((a,b)=>a.i-b.i);const now=new Date(ctx&&ctx.now||Date.now());const fmt=(d,z)=>d.toLocaleString('en-US',{timeZone:Z[z]||z,weekday:'short',hour:'numeric',minute:'2-digit'});const offset=(z,d)=>{const p=new Intl.DateTimeFormat('en-US',{timeZone:Z[z],hour12:false,year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit'}).formatToParts(d).reduce((o,x)=>(o[x.type]=x.value,o),{});return(Date.UTC(+p.year,+p.month-1,+p.day,+p.hour%24,+p.minute)-d.getTime())/6e4};const tm=t.match(/(\\d{1,2})(?::(\\d{2}))?\\s*(am|pm)?/);if(found.length>=2&&tm){const[A,B]=found;let h=+tm[1]%12+(tm[3]==='pm'?12:0);if(!tm[3])h=+tm[1];const base=new Date(Date.UTC(now.getUTCFullYear(),now.getUTCMonth(),now.getUTCDate(),h,+(tm[2]||0)));const at=new Date(base.getTime()-offset(A.k,base)*6e4);return{answer:`${fmt(at,A.k)} in ${A.k} is ${fmt(at,B.k)} in ${B.k}`,steps:[`${A.k}: ${Z[A.k]}, ${B.k}: ${Z[B.k]}`,`Difference: ${(offset(B.k,at)-offset(A.k,at))/60} hours`]}}if(found.length){const z=found[found.length-1].k;return{answer:`It's ${fmt(now,z)} in ${z.replace(/\\b\\w/g,c=>c.toUpperCase())}`,steps:[`Time zone: ${Z[z]}`]}}return{answer:null,reason:'Name a city or zone.'}}",
+  "tests": [
+    {
+      "q": "what time is it in Tokyo",
+      "expect": "Tokyo"
+    },
+    {
+      "q": "3pm london to new york",
+      "expect": "10:00 AM"
+    },
+    {
+      "q": "9:30am pst in berlin",
+      "expect": "6:30 PM"
+    },
+    {
+      "q": "time in sydney",
+      "expect": "Sydney"
+    }
+  ],
+  "license": "MIT",
+  "author": "ayqshi"
+}

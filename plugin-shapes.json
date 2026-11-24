@@ -1,0 +1,40 @@
+{
+  "id": "shapes",
+  "name": "Area, perimeter and volume",
+  "version": "1.0.0",
+  "topic": "geometry",
+  "description": "Circles, rectangles, triangles, squares, spheres, cylinders, cones and cubes.",
+  "keywords": [
+    "area of",
+    "perimeter",
+    "circumference",
+    "volume of",
+    "surface area"
+  ],
+  "regex": "\\b(area|perimeter|circumference|volume|surface area)\\b.*\\b(circle|square|rectangle|triangle|sphere|cylinder|cone|cube|box|trapezoid)\\b",
+  "solve": "function solve(q){const t=q.toLowerCase();const n=(t.match(/\\d+(\\.\\d+)?/g)||[]).map(Number);const g=k=>{const m=t.match(new RegExp(k+'\\\\s*(?:of|=|is)?\\\\s*(\\\\d+(?:\\\\.\\\\d+)?)'));return m?+m[1]:null};const r=g('radius')??(g('diameter')!=null?g('diameter')/2:null);const P=Math.PI,f=v=>+v.toFixed(4);const want=/surface/.test(t)?'surface':/perimeter|circumference/.test(t)?'perim':/volume/.test(t)?'vol':'area';const S=(a,s)=>({answer:`${f(a)}`,steps:[s,`= ${f(a)}`]});if(/circle/.test(t)){const R=r??n[0];if(R==null)return{answer:null};return want==='perim'?S(2*P*R,`2πr = 2π·${R}`):S(P*R*R,`πr² = π·${R}²`)}if(/sphere/.test(t)){const R=r??n[0];return want==='surface'?S(4*P*R*R,`4πr² with r = ${R}`):S(4/3*P*R**3,`4/3·πr³ with r = ${R}`)}if(/cylinder/.test(t)){const R=r??n[0],h=g('height')??n[1];return want==='surface'?S(2*P*R*(R+h),`2πr(r+h), r=${R}, h=${h}`):S(P*R*R*h,`πr²h, r=${R}, h=${h}`)}if(/cone/.test(t)){const R=r??n[0],h=g('height')??n[1];return S(P*R*R*h/3,`πr²h/3, r=${R}, h=${h}`)}if(/cube/.test(t)){const a=n[0];return want==='surface'?S(6*a*a,`6a², a=${a}`):S(a**3,`a³, a=${a}`)}if(/square/.test(t)){const a=n[0];return want==='perim'?S(4*a,`4a, a=${a}`):S(a*a,`a², a=${a}`)}if(/rectangle|box/.test(t)){const[a,b,c]=n;if(want==='vol')return S(a*b*c,`l·w·h = ${a}·${b}·${c}`);return want==='perim'?S(2*(a+b),`2(l+w) = 2(${a}+${b})`):S(a*b,`l·w = ${a}·${b}`)}if(/triangle/.test(t)){if(n.length===3&&want==='area'&&!/base|height/.test(t)){const[a,b,c]=n,s=(a+b+c)/2;return S(Math.sqrt(s*(s-a)*(s-b)*(s-c)),`Heron: s = ${s}`)}const b=g('base')??n[0],h=g('height')??n[1];return want==='perim'?S(n.reduce((x,y)=>x+y,0),`a+b+c`):S(b*h/2,`½·b·h = ½·${b}·${h}`)}if(/trapezoid/.test(t)){const[a,b,h]=n;return S((a+b)/2*h,`(a+b)/2·h`)}return{answer:null,reason:'Unknown shape.'}}",
+  "tests": [
+    {
+      "q": "area of a circle with radius 3",
+      "expect": "28.2743"
+    },
+    {
+      "q": "volume of a cylinder radius 2 height 10",
+      "expect": "125.6637"
+    },
+    {
+      "q": "perimeter of a rectangle 4 by 7",
+      "expect": "22"
+    },
+    {
+      "q": "area of a triangle with base 10 and height 6",
+      "expect": "30"
+    },
+    {
+      "q": "volume of a sphere with diameter 6",
+      "expect": "113.0973"
+    }
+  ],
+  "license": "MIT",
+  "author": "ayqshi"
+}

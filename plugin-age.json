@@ -1,0 +1,35 @@
+{
+  "id": "age",
+  "name": "Age and birthdays",
+  "version": "1.0.0",
+  "topic": "calendar",
+  "description": "Age from a birth date, and days until the next birthday.",
+  "keywords": [
+    "how old",
+    "age",
+    "born in",
+    "birthday"
+  ],
+  "regex": "\\b(how old|my age|age of someone|born (on|in)|birthday)\\b",
+  "solve": "function solve(q,ctx){const M='jan feb mar apr may jun jul aug sep oct nov dec'.split(' ');const now=new Date(ctx&&ctx.now||Date.now());const t=q.toLowerCase().replace(/(\\d)(st|nd|rd|th)\\b/g,'$1');let d=null;let m=t.match(/(\\d{4})-(\\d{2})-(\\d{2})/);if(m)d=new Date(+m[1],+m[2]-1,+m[3]);if(!d&&(m=t.match(/\\b(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\\.?\\s+(\\d{1,2}),?\\s+(\\d{4})/)))d=new Date(+m[3],M.indexOf(m[1]),+m[2]);if(!d&&(m=t.match(/\\b(\\d{1,2})\\s+(jan|feb|mar|apr|may|jun|jul|aug|sep|oct|nov|dec)[a-z]*\\s+(\\d{4})/)))d=new Date(+m[3],M.indexOf(m[2]),+m[1]);if(!d&&(m=t.match(/\\b(19\\d{2}|20\\d{2})\\b/)))d=new Date(+m[1],0,1);if(!d)return{answer:null,reason:'Give a birth date.'};let y=now.getFullYear()-d.getFullYear();const had=now.getMonth()>d.getMonth()||now.getMonth()===d.getMonth()&&now.getDate()>=d.getDate();if(!had)y--;let next=new Date(now.getFullYear(),d.getMonth(),d.getDate());if(next<new Date(now.getFullYear(),now.getMonth(),now.getDate()))next.setFullYear(now.getFullYear()+1);const days=Math.round((next-new Date(now.getFullYear(),now.getMonth(),now.getDate()))/864e5);const onlyYear=!/\\d{1,2}\\s|-\\d{2}-|[a-z]\\s+\\d{1,2}/.test(t.replace(/\\b(19|20)\\d{2}\\b/,''));return{answer:onlyYear?`${y-1} or ${y} years old`:`${y} years old${days?`, next birthday in ${days} days`:' — happy birthday'}`,steps:[`Born ${d.toDateString()}`,`Today ${now.toDateString()}`]}}",
+  "tests": [
+    {
+      "q": "how old is someone born on March 3 1990",
+      "expect": "36 years old"
+    },
+    {
+      "q": "how old am I if I was born 2001-12-25",
+      "expect": "24 years old, next birthday in 31 days"
+    },
+    {
+      "q": "born in 1985 how old",
+      "expect": "40 or 41"
+    },
+    {
+      "q": "my birthday is 15 June 2000 how old am i",
+      "expect": "26 years old"
+    }
+  ],
+  "license": "MIT",
+  "author": "ayqshi"
+}

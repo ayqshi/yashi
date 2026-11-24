@@ -1,0 +1,38 @@
+{
+  "id": "base-convert",
+  "name": "Number bases",
+  "version": "1.0.0",
+  "topic": "computing",
+  "description": "Convert between decimal, binary, octal and hexadecimal.",
+  "keywords": [
+    "binary",
+    "hex",
+    "hexadecimal",
+    "octal",
+    "decimal",
+    "base 2",
+    "base 16"
+  ],
+  "regex": "\\b(binary|hex(adecimal)?|octal|0x[0-9a-f]+|0b[01]+)\\b|\\b(in|to|from|into) base ?(2|8|16|10)\\b",
+  "solve": "function solve(q){const t=q.toLowerCase();const names={binary:2,'base 2':2,base2:2,octal:8,'base 8':8,hex:16,hexadecimal:16,'base 16':16,decimal:10,'base 10':10};let src=null,from=10,to=null;let m;if(m=t.match(/\\b0x([0-9a-f]+)\\b/)){src=m[1];from=16}else if(m=t.match(/\\b0b([01]+)\\b/)){src=m[1];from=2}else if(m=t.match(/\\b0o([0-7]+)\\b/)){src=m[1];from=8}else if(m=t.match(/\\b([0-9a-f]+)\\s*(?:in|from)?\\s*(binary|hex(?:adecimal)?|octal|decimal|base ?\\d+)\\s*(?:to|into|in|as)\\b/)){src=m[1];from=names[m[2].replace(/ +/,' ')]||+m[2].replace(/\\D/g,'')}else if(m=t.match(/\\b(\\d+)\\b/)){src=m[1];from=10}const tm=t.match(/(?:to|into|in|as)\\s+(binary|hex(?:adecimal)?|octal|decimal|base ?\\d+)\\s*\\??$/)||t.match(/(?:to|into|in|as)\\s+(binary|hex(?:adecimal)?|octal|decimal|base ?\\d+)/);if(tm)to=names[tm[1].replace(/ +/,' ')]||+tm[1].replace(/\\D/g,'');if(to==null)to=from===10?2:10;if(!src)return{answer:null,reason:'No number found.'};const v=parseInt(src,from);if(!Number.isFinite(v))return{answer:null,reason:`“${src}” isn’t valid in base ${from}.`};const out=v.toString(to).toUpperCase(),pre={2:'0b',8:'0o',16:'0x',10:''}[to]||'';return{answer:`${pre}${out}`,steps:[`${src} in base ${from} = ${v} in decimal`,`${v} in base ${to} = ${out}`]}}",
+  "tests": [
+    {
+      "q": "convert 255 to binary",
+      "expect": "0b11111111"
+    },
+    {
+      "q": "what is 0xff in decimal",
+      "expect": "255"
+    },
+    {
+      "q": "1010 binary to decimal",
+      "expect": "10"
+    },
+    {
+      "q": "255 in hex",
+      "expect": "0xFF"
+    }
+  ],
+  "license": "MIT",
+  "author": "ayqshi"
+}

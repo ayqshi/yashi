@@ -1,0 +1,36 @@
+{
+  "id": "pythagoras",
+  "name": "Right triangles",
+  "version": "1.0.0",
+  "topic": "geometry",
+  "description": "Find a missing side of a right triangle with the Pythagorean theorem.",
+  "keywords": [
+    "hypotenuse",
+    "pythagorean",
+    "pythagoras",
+    "right triangle",
+    "missing side"
+  ],
+  "regex": "\\b(hypotenuse|pythagor\\w*|right[- ]angled? triangle|right triangle)\\b",
+  "solve": "function solve(q){const t=q.toLowerCase();const n=(t.match(/\\d+(\\.\\d+)?/g)||[]).map(Number);if(n.length<2)return{answer:null,reason:'Need two sides.'};const f=v=>+v.toFixed(4);if(/hypotenuse (is|of|=)\\s*\\d|hypotenuse\\s+\\d|with hypotenuse/.test(t)&&!/find (the )?hypotenuse|what is the hypotenuse/.test(t)){const hm=t.match(/hypotenuse\\s*(?:is|of|=)?\\s*(\\d+(?:\\.\\d+)?)/);const c=+hm[1],a=n.find(x=>x!==c);const b=Math.sqrt(c*c-a*a);return{answer:`missing leg = ${f(b)}`,steps:[`b = √(c² − a²) = √(${c}² − ${a}²)`,`= ${f(b)}`]}}const[a,b]=n;const c=Math.sqrt(a*a+b*b);return{answer:`hypotenuse = ${f(c)}`,steps:[`c = √(a² + b²) = √(${a}² + ${b}²) = √${a*a+b*b}`,`= ${f(c)}`]}}",
+  "tests": [
+    {
+      "q": "find the hypotenuse of a right triangle with legs 3 and 4",
+      "expect": "hypotenuse = 5"
+    },
+    {
+      "q": "right triangle with hypotenuse 13 and one leg 5, find the other leg",
+      "expect": "missing leg = 12"
+    },
+    {
+      "q": "pythagorean theorem 6 and 8",
+      "expect": "10"
+    },
+    {
+      "q": "right angle triangle sides 1 and 1 hypotenuse?",
+      "expect": "1.4142"
+    }
+  ],
+  "license": "MIT",
+  "author": "ayqshi"
+}

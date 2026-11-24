@@ -1,0 +1,914 @@
+[
+  {
+    "name": "Open-Meteo",
+    "url": "https://api.open-meteo.com/v1/forecast?latitude=52.5&longitude=13.4&current=temperature_2m",
+    "desc": "Weather forecasts and history worldwide",
+    "cat": "weather",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "REST Countries",
+    "url": "https://restcountries.com/v3.1/name/japan",
+    "desc": "Country facts: capital, population, flags, currencies",
+    "cat": "geography",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Nominatim",
+    "url": "https://nominatim.openstreetmap.org/search?format=json&q=paris",
+    "desc": "Geocoding addresses ↔ coordinates (OpenStreetMap)",
+    "cat": "geography maps",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "OSRM",
+    "url": "https://router.project-osrm.org/route/v1/driving/13.38,52.52;13.43,52.5?overview=false",
+    "desc": "Driving/walking routes and travel times",
+    "cat": "maps routing",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Overpass",
+    "url": "https://overpass-api.de/api/interpreter?data=[out:json];node[amenity=cafe](52.51,13.37,52.52,13.39);out;",
+    "desc": "Query OpenStreetMap features (cafés, roads…)",
+    "cat": "maps",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Wikipedia REST",
+    "url": "https://en.wikipedia.org/api/rest_v1/page/summary/Moon",
+    "desc": "Article summaries, images, featured content, news",
+    "cat": "knowledge",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Wikidata",
+    "url": "https://www.wikidata.org/w/api.php?action=wbsearchentities&format=json&origin=*&language=en&search=moon",
+    "desc": "Structured facts about anything",
+    "cat": "knowledge",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Open Library",
+    "url": "https://openlibrary.org/search.json?q=dune",
+    "desc": "Books, authors, covers",
+    "cat": "books",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Gutendex",
+    "url": "https://gutendex.com/books?search=austen",
+    "desc": "Free Project Gutenberg books",
+    "cat": "books",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Free Dictionary",
+    "url": "https://api.dictionaryapi.dev/api/v2/entries/en/hello",
+    "desc": "Definitions, phonetics, examples",
+    "cat": "words dictionary",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Datamuse",
+    "url": "https://api.datamuse.com/words?rel_syn=happy",
+    "desc": "Synonyms, rhymes, related words",
+    "cat": "words",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "MyMemory",
+    "url": "https://api.mymemory.translated.net/get?q=hello&langpair=en|es",
+    "desc": "Translation (daily free quota)",
+    "cat": "translate language",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Lingva",
+    "url": "https://lingva.ml/api/v1/en/es/hello",
+    "desc": "Translation front-end, no key",
+    "cat": "translate language",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Frankfurter",
+    "url": "https://api.frankfurter.app/latest?from=USD&to=EUR",
+    "desc": "Currency exchange rates (ECB)",
+    "cat": "finance currency",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "CoinGecko",
+    "url": "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd",
+    "desc": "Crypto prices and markets",
+    "cat": "finance crypto",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Nager.Date",
+    "url": "https://date.nager.at/api/v3/PublicHolidays/2026/US",
+    "desc": "Public holidays by country",
+    "cat": "calendar",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "iTunes Search",
+    "url": "https://itunes.apple.com/search?term=radiohead&limit=3",
+    "desc": "Music, podcasts, apps, movies search",
+    "cat": "music media search",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "MusicBrainz",
+    "url": "https://musicbrainz.org/ws/2/artist?query=radiohead&fmt=json",
+    "desc": "Open music metadata",
+    "cat": "music",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "TVMaze",
+    "url": "https://api.tvmaze.com/search/shows?q=office",
+    "desc": "TV shows, episodes, schedules",
+    "cat": "tv media",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Jikan",
+    "url": "https://api.jikan.moe/v4/anime?q=naruto&limit=3",
+    "desc": "Anime and manga data (MyAnimeList)",
+    "cat": "anime media",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "AniList GraphQL",
+    "url": "https://graphql.anilist.co",
+    "desc": "Anime/manga GraphQL API",
+    "cat": "anime",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Invidious",
+    "url": "https://api.invidious.io/instances.json",
+    "desc": "Open YouTube front-end; instances expose /api/v1/search?q= for video search without a key",
+    "cat": "video youtube search",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Piped",
+    "url": "https://pipedapi.kavin.rocks/search?q=lofi&filter=videos",
+    "desc": "Open YouTube front-end API: search, streams, channels",
+    "cat": "video youtube search",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Openverse",
+    "url": "https://api.openverse.org/v1/images/?q=forest",
+    "desc": "Openly licensed images and audio",
+    "cat": "images media",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Lorem Picsum",
+    "url": "https://picsum.photos/v2/list?limit=3",
+    "desc": "Placeholder photos",
+    "cat": "images",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "DiceBear",
+    "url": "https://api.dicebear.com/9.x/shapes/svg?seed=x",
+    "desc": "Generated avatars",
+    "cat": "images avatars",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "QR Server",
+    "url": "https://api.qrserver.com/v1/create-qr-code/?data=hello&size=200x200",
+    "desc": "QR code images",
+    "cat": "tools",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "ipwho.is",
+    "url": "https://ipwho.is/",
+    "desc": "IP geolocation of the visitor",
+    "cat": "network",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "httpbin",
+    "url": "https://httpbin.org/get",
+    "desc": "Echo/test HTTP requests",
+    "cat": "testing network",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "JSONPlaceholder",
+    "url": "https://jsonplaceholder.typicode.com/posts/1",
+    "desc": "Fake REST data for prototypes",
+    "cat": "testing",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Random User",
+    "url": "https://randomuser.me/api/",
+    "desc": "Fake user profiles",
+    "cat": "testing",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "PokeAPI",
+    "url": "https://pokeapi.co/api/v2/pokemon/pikachu",
+    "desc": "Pokémon data",
+    "cat": "games",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Open Trivia DB",
+    "url": "https://opentdb.com/api.php?amount=3",
+    "desc": "Trivia questions",
+    "cat": "games quiz",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Deck of Cards",
+    "url": "https://deckofcardsapi.com/api/deck/new/shuffle/",
+    "desc": "Card deck simulation",
+    "cat": "games",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "JokeAPI",
+    "url": "https://v2.jokeapi.dev/joke/Any?safe-mode",
+    "desc": "Jokes",
+    "cat": "fun",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "HN Algolia",
+    "url": "https://hn.algolia.com/api/v1/search?query=webgpu",
+    "desc": "Hacker News search",
+    "cat": "news tech",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "GDELT",
+    "url": "https://api.gdeltproject.org/api/v2/doc/doc?query=climate&mode=artlist&format=json&maxrecords=3",
+    "desc": "Global news articles search, updated every 15 minutes",
+    "cat": "news",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Spaceflight News",
+    "url": "https://api.spaceflightnewsapi.net/v4/articles/?limit=3",
+    "desc": "Space news",
+    "cat": "news space",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "USGS Earthquakes",
+    "url": "https://earthquake.usgs.gov/earthquakes/feed/v1.0/summary/all_day.geojson",
+    "desc": "Real-time earthquakes",
+    "cat": "science",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "NASA Images",
+    "url": "https://images-api.nasa.gov/search?q=apollo",
+    "desc": "NASA image and video library",
+    "cat": "space images",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Open Notify",
+    "url": "http://api.open-notify.org/iss-now.json",
+    "desc": "ISS position (HTTP only)",
+    "cat": "space",
+    "auth": "No",
+    "cors": false
+  },
+  {
+    "name": "Sunrise-Sunset",
+    "url": "https://api.sunrise-sunset.org/json?lat=36.7&lng=-4.4",
+    "desc": "Sunrise and sunset times",
+    "cat": "science",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "OpenAlex",
+    "url": "https://api.openalex.org/works?search=sleep&per-page=2",
+    "desc": "Scholarly works, authors, citations",
+    "cat": "research",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Crossref",
+    "url": "https://api.crossref.org/works?query=climate&rows=2",
+    "desc": "DOIs and publication metadata",
+    "cat": "research",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "arXiv",
+    "url": "https://export.arxiv.org/api/query?search_query=all:transformer&max_results=2",
+    "desc": "Preprints (Atom XML)",
+    "cat": "research",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "PubMed",
+    "url": "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi?db=pubmed&retmode=json&term=sleep",
+    "desc": "Medical literature",
+    "cat": "research health",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Open Food Facts",
+    "url": "https://world.openfoodfacts.org/api/v2/product/737628064502.json",
+    "desc": "Food products and nutrition",
+    "cat": "food",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "TheMealDB",
+    "url": "https://www.themealdb.com/api/json/v1/1/search.php?s=curry",
+    "desc": "Recipes (test key 1 is public)",
+    "cat": "food",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Universities",
+    "url": "http://universities.hipolabs.com/search?country=Canada",
+    "desc": "University list (HTTP only)",
+    "cat": "education",
+    "auth": "No",
+    "cors": false
+  },
+  {
+    "name": "Zippopotam",
+    "url": "https://api.zippopotam.us/us/90210",
+    "desc": "Postal codes to places",
+    "cat": "geography",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "GitHub REST",
+    "url": "https://api.github.com/repos/public-apis/public-apis",
+    "desc": "Repos, users, files (60 req/h without a token)",
+    "cat": "code dev",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "GitLab",
+    "url": "https://gitlab.com/api/v4/projects?search=chat&per_page=2",
+    "desc": "Public projects and files",
+    "cat": "code dev",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Codeberg",
+    "url": "https://codeberg.org/api/v1/repos/search?q=chat&limit=2",
+    "desc": "Public repos (Gitea API)",
+    "cat": "code dev",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "npm registry",
+    "url": "https://registry.npmjs.org/-/v1/search?text=chart&size=2",
+    "desc": "JavaScript packages",
+    "cat": "code dev",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "PyPI JSON",
+    "url": "https://pypi.org/pypi/requests/json",
+    "desc": "Python package metadata",
+    "cat": "code dev",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "jsDelivr data",
+    "url": "https://data.jsdelivr.com/v1/packages/npm/react",
+    "desc": "CDN stats and package files",
+    "cat": "code dev",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Stack Exchange",
+    "url": "https://api.stackexchange.com/2.3/search?order=desc&sort=activity&intitle=webgpu&site=stackoverflow",
+    "desc": "Q&A search (keyless quota)",
+    "cat": "code dev",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Wayback availability",
+    "url": "https://archive.org/wayback/available?url=example.com",
+    "desc": "Archived snapshots of any URL",
+    "cat": "archive web",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Wikidata SPARQL",
+    "url": "https://query.wikidata.org/sparql?format=json&query=SELECT%20%3Fx%20WHERE%20%7B%20wd%3AQ42%20wdt%3AP31%20%3Fx%20%7D",
+    "desc": "Query the whole Wikidata knowledge graph",
+    "cat": "knowledge",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "DBpedia SPARQL",
+    "url": "https://dbpedia.org/sparql?format=json&query=SELECT%20*%20WHERE%20%7B%3Fs%20%3Fp%20%3Fo%7D%20LIMIT%201",
+    "desc": "Second knowledge graph from Wikipedia infoboxes",
+    "cat": "knowledge",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Wayback CDX",
+    "url": "https://web.archive.org/cdx/search/cdx?url=example.com&output=json&limit=3",
+    "desc": "Full crawl index of archived URLs",
+    "cat": "archive web",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Semantic Scholar",
+    "url": "https://api.semanticscholar.org/graph/v1/paper/search?query=transformer&limit=2",
+    "desc": "Papers, citations, authors",
+    "cat": "research",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Europe PMC",
+    "url": "https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=malaria&format=json&pageSize=2",
+    "desc": "Life-science literature",
+    "cat": "research health",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "DOAJ",
+    "url": "https://doaj.org/api/search/articles/climate?pageSize=2",
+    "desc": "Open-access journal articles",
+    "cat": "research",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Photon geocoder",
+    "url": "https://photon.komoot.io/api/?q=berlin&limit=1",
+    "desc": "Fast fuzzy geocoding (OpenStreetMap)",
+    "cat": "geography maps",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Open-Meteo air quality",
+    "url": "https://air-quality-api.open-meteo.com/v1/air-quality?latitude=52.5&longitude=13.4&current=pm2_5",
+    "desc": "Air quality worldwide",
+    "cat": "weather",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Where the ISS at",
+    "url": "https://api.wheretheiss.at/v1/satellites/25544",
+    "desc": "Live ISS position over HTTPS",
+    "cat": "space",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "JPL Small-Body DB",
+    "url": "https://ssd-api.jpl.nasa.gov/sbdb.api?sstr=Eros",
+    "desc": "Asteroids and comets",
+    "cat": "space science",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "SpaceX",
+    "url": "https://api.spacexdata.com/v4/launches/latest",
+    "desc": "SpaceX launches, rockets, crew",
+    "cat": "space",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "GBIF",
+    "url": "https://api.gbif.org/v1/species/search?q=fox&limit=2",
+    "desc": "Species and occurrence data",
+    "cat": "science nature",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "iNaturalist",
+    "url": "https://api.inaturalist.org/v1/observations?per_page=2",
+    "desc": "Nature observations with photos",
+    "cat": "science nature",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "xeno-canto",
+    "url": "https://xeno-canto.org/api/2/recordings?query=nightingale",
+    "desc": "Bird song recordings",
+    "cat": "nature audio",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "PubChem",
+    "url": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/caffeine/JSON",
+    "desc": "Chemical compounds",
+    "cat": "science chemistry",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "UniProt",
+    "url": "https://rest.uniprot.org/uniprotkb/search?query=insulin&size=1",
+    "desc": "Protein data",
+    "cat": "science",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "openFDA",
+    "url": "https://api.fda.gov/drug/label.json?search=ibuprofen&limit=1",
+    "desc": "Drug labels and adverse events",
+    "cat": "health",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "ClinicalTrials.gov",
+    "url": "https://clinicaltrials.gov/api/v2/studies?query.term=asthma&pageSize=1",
+    "desc": "Clinical trials",
+    "cat": "health research",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Ensembl",
+    "url": "https://rest.ensembl.org/lookup/symbol/homo_sapiens/BRCA2?content-type=application/json",
+    "desc": "Genes and genomes",
+    "cat": "science",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "DEV Community",
+    "url": "https://dev.to/api/articles?tag=javascript&per_page=3",
+    "desc": "Developer articles",
+    "cat": "news dev",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Lobsters",
+    "url": "https://lobste.rs/hottest.json",
+    "desc": "Tech link aggregator",
+    "cat": "news dev",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "CoinCap",
+    "url": "https://api.coincap.io/v2/assets?limit=3",
+    "desc": "Crypto market data",
+    "cat": "finance crypto",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Kraken",
+    "url": "https://api.kraken.com/0/public/Ticker?pair=XBTUSD",
+    "desc": "Exchange ticker",
+    "cat": "finance crypto",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "mempool.space",
+    "url": "https://mempool.space/api/blocks",
+    "desc": "Bitcoin blocks and fees",
+    "cat": "finance crypto bitcoin",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "World Bank",
+    "url": "https://api.worldbank.org/v2/country/US/indicator/SP.POP.TOTL?format=json&per_page=2",
+    "desc": "Development indicators by country",
+    "cat": "finance data",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "DBnomics",
+    "url": "https://api.db.nomics.world/v22/series/IMF/WEO:2023-10?limit=1",
+    "desc": "Economic series from 80+ providers",
+    "cat": "finance data",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Piston",
+    "url": "https://emkc.org/api/v2/piston/runtimes",
+    "desc": "Run code in 60+ languages",
+    "cat": "code dev",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Wandbox",
+    "url": "https://wandbox.org/api/list.json",
+    "desc": "Online compilers",
+    "cat": "code dev",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Kroki",
+    "url": "https://kroki.io/mermaid/svg/eNpLL0osyFAIcbHmUgACx-rk_NyCxEoFYyRhuGMtAAC6Cgrw",
+    "desc": "Render 20+ diagram languages",
+    "cat": "code dev diagrams",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "QuickChart",
+    "url": "https://quickchart.io/chart?c={type:%27bar%27,data:{labels:[1,2],datasets:[{data:[3,4]}]}}",
+    "desc": "Chart images from a URL",
+    "cat": "tools charts",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "crates.io",
+    "url": "https://crates.io/api/v1/crates/serde",
+    "desc": "Rust packages",
+    "cat": "code dev",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "NuGet",
+    "url": "https://api.nuget.org/v3/registration5-semver1/newtonsoft.json/index.json",
+    "desc": ".NET packages",
+    "cat": "code dev",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "RubyGems",
+    "url": "https://rubygems.org/api/v1/gems/rails.json",
+    "desc": "Ruby packages",
+    "cat": "code dev",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "OSV",
+    "url": "https://api.osv.dev/v1/query",
+    "desc": "Known vulnerabilities by package (POST)",
+    "cat": "code security",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "deps.dev",
+    "url": "https://api.deps.dev/v3/systems/npm/packages/react",
+    "desc": "Dependency graphs and versions",
+    "cat": "code dev",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "grep.app",
+    "url": "https://grep.app/api/search?q=useState",
+    "desc": "Search code across GitHub",
+    "cat": "code dev search",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "MDN compat data",
+    "url": "https://raw.githubusercontent.com/mdn/browser-compat-data/main/README.md",
+    "desc": "Browser support data",
+    "cat": "code dev",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Poly Haven",
+    "url": "https://api.polyhaven.com/assets?t=hdris",
+    "desc": "CC0 HDRIs, models, textures",
+    "cat": "3d images",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "ambientCG",
+    "url": "https://ambientcg.com/api/v2/full_json?q=wood&limit=2",
+    "desc": "CC0 PBR materials",
+    "cat": "3d images",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Iconify",
+    "url": "https://api.iconify.design/mdi.json?icons=home",
+    "desc": "200k open icons",
+    "cat": "images icons",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "The Color API",
+    "url": "https://www.thecolorapi.com/id?hex=0047AB",
+    "desc": "Colour names and schemes",
+    "cat": "design",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Scryfall",
+    "url": "https://api.scryfall.com/cards/search?q=dragon",
+    "desc": "Magic: The Gathering cards",
+    "cat": "games",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Lichess",
+    "url": "https://lichess.org/api/user/thibault",
+    "desc": "Chess players and games",
+    "cat": "games",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Chess.com",
+    "url": "https://api.chess.com/pub/player/hikaru",
+    "desc": "Chess.com public data",
+    "cat": "games",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Modrinth",
+    "url": "https://api.modrinth.com/v2/search?query=sodium&limit=2",
+    "desc": "Minecraft mods",
+    "cat": "games",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "CheapShark",
+    "url": "https://www.cheapshark.com/api/1.0/deals?pageSize=3",
+    "desc": "PC game deals",
+    "cat": "games",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Speedrun.com",
+    "url": "https://www.speedrun.com/api/v1/games?name=mario",
+    "desc": "Speedrun leaderboards",
+    "cat": "games",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Radio Browser",
+    "url": "https://all.api.radio-browser.info/json/stations/search?name=jazz&limit=3",
+    "desc": "30k internet radio stations",
+    "cat": "music audio",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Deezer",
+    "url": "https://api.deezer.com/search?q=daft%20punk",
+    "desc": "Music search with previews",
+    "cat": "music",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "TheAudioDB",
+    "url": "https://theaudiodb.com/api/v1/json/2/search.php?s=coldplay",
+    "desc": "Artist bios and artwork",
+    "cat": "music",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Kitsu",
+    "url": "https://kitsu.io/api/edge/anime?filter[text]=naruto",
+    "desc": "Anime and manga",
+    "cat": "anime",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "trace.moe",
+    "url": "https://api.trace.moe/me",
+    "desc": "Find the anime scene from a screenshot",
+    "cat": "anime images",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "DNS over HTTPS",
+    "url": "https://dns.google/resolve?name=example.com&type=A",
+    "desc": "DNS lookups",
+    "cat": "network",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "WorldTimeAPI",
+    "url": "https://worldtimeapi.org/api/timezone/Europe/London",
+    "desc": "Time zones",
+    "cat": "calendar",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Microlink",
+    "url": "https://api.microlink.io/?url=https://example.com",
+    "desc": "Link previews and screenshots",
+    "cat": "tools web",
+    "auth": "No",
+    "cors": true
+  },
+  {
+    "name": "Jina Reader",
+    "url": "https://r.jina.ai/https://example.com",
+    "desc": "Any page as Markdown, with CORS",
+    "cat": "tools web",
+    "auth": "No",
+    "cors": true
+  }
+]

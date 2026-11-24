@@ -1,0 +1,38 @@
+{
+  "id": "statistics",
+  "name": "Descriptive statistics",
+  "version": "1.0.0",
+  "topic": "maths",
+  "description": "Mean, median, mode, range, variance and standard deviation of a list.",
+  "keywords": [
+    "mean",
+    "median",
+    "mode",
+    "average",
+    "standard deviation",
+    "variance",
+    "range of"
+  ],
+  "regex": "\\b(mean|median|mode|standard deviation|std ?dev|variance|range|average)\\b[^\\d]*(-?\\d+(\\.\\d+)?[,\\s]+){2,}",
+  "solve": "function solve(q){const nums=(q.replace(/(\\d),(\\d{3})\\b/g,'$1$2').match(/-?\\d+(?:\\.\\d+)?/g)||[]).map(Number);if(nums.length<2)return{answer:null,reason:'Need at least two numbers.'};const t=q.toLowerCase(),n=nums.length,s=[...nums].sort((a,b)=>a-b),sum=s.reduce((a,b)=>a+b,0),mean=sum/n,med=n%2?s[(n-1)/2]:(s[n/2-1]+s[n/2])/2;const cnt={};s.forEach(v=>cnt[v]=(cnt[v]||0)+1);const mx=Math.max(...Object.values(cnt));const mode=mx>1?Object.keys(cnt).filter(k=>cnt[k]===mx).map(Number):[];const sample=/\\bsample\\b/.test(t);const v=s.reduce((a,b)=>a+(b-mean)**2,0)/(n-(sample?1:0));const r=x=>+x.toFixed(4);const all={mean:r(mean),median:r(med),mode:mode.length?mode.join(', '):'none',range:r(s[n-1]-s[0]),variance:r(v),'standard deviation':r(Math.sqrt(v))};const ask=Object.keys(all).filter(k=>t.includes(k)||(k=='mean'&&/\\baverage\\b/.test(t))||(k=='standard deviation'&&/std ?dev/.test(t)));const keys=ask.length?ask:Object.keys(all);return{answer:keys.map(k=>`${k} ${all[k]}`).join(', '),steps:[`Sorted: ${s.join(', ')} (n = ${n})`,`Sum = ${r(sum)}, mean = ${r(sum)} ÷ ${n} = ${r(mean)}`,`Median = ${r(med)}`,`${sample?'Sample':'Population'} variance = ${r(v)}, standard deviation = √${r(v)} = ${r(Math.sqrt(v))}`]}}",
+  "tests": [
+    {
+      "q": "mean median mode of 3, 5, 7, 7, 9",
+      "expect": "mean 6.2, median 7, mode 7"
+    },
+    {
+      "q": "standard deviation of 2 4 4 4 5 5 7 9",
+      "expect": "standard deviation 2"
+    },
+    {
+      "q": "what is the average of 10, 20, 30, 40",
+      "expect": "mean 25"
+    },
+    {
+      "q": "range of 4, 18, 9, 2",
+      "expect": "range 16"
+    }
+  ],
+  "license": "MIT",
+  "author": "ayqshi"
+}
